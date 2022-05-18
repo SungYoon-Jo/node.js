@@ -25,7 +25,6 @@ const process = {
             if (users.passwd[idx] === passwd) {
                 return res.json({
                     success: true,
-                    msg: "hi?",
                 });
             }
         }
