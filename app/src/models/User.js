@@ -8,16 +8,22 @@ class User {
     }
 
     login() {
-        const body = this.body;
-        const {id, passwd} = UserStorge.getUserInfo(body.id);
+        const client = this.body;
+        const {id, passwd} = UserStorge.getUserInfo(client.id);
 
         if (id) {
-            if (id === body.id && passwd === body.passwd){
+            if (id === client.id && passwd === client.passwd){
                 return {success: true};
             }
             return {success: false, msg: "패스워드가 일치하지 않습니다."};
         }
-        return {success: false, msg: "아이디가 일치하지 않습니다."};
+        return {success: false, msg: "아이디가 존재하지 않습니다."};
+    }
+
+    register() {
+        const client = this.body;
+        const response = UserStorge.save(client);
+        return response;
     }
 }
 
