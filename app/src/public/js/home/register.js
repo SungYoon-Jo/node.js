@@ -1,18 +1,22 @@
 "use strict";
 
 const id = document.querySelector("#id"),
+    name = document.querySelector("#name"),
     passwd = document.querySelector("#passwd"),
-    loginBtn = document.querySelector("button");
+    confirmPasswd = document.querySelector("#confirm-passwd"),
+    registerBtn = document.querySelector("button");
 
-loginBtn.addEventListener("click", login);
+registerBtn.addEventListener("click", register);
 
-function login() {
+function register() {
     const req = {
         id: id.value,
+        name: name.value,
         passwd: passwd.value,
+        confirmPasswd: confirmPasswd.value,
     };
 
-    fetch("/login", {
+    fetch("/register", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -22,12 +26,12 @@ function login() {
     .then((res) => res.json())
     .then((res) => {
         if (res.success) {
-            location.href = "/";
+            location.href = "/login";
         } else {
             alert(res.msg);
         }
     })
     .catch((err) => {
-        console.error(("로그인중 에러 발생"));
+        console.error(("회원가입 중 에러 발생"));
     });
 }
