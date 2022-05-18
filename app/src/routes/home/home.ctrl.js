@@ -1,13 +1,43 @@
 "use strict";
 
-const home = (req,res) => {
-    res.render("home/index");
+const output = {
+    home: (req,res) => {
+        res.render("home/index");
+    },
+    login: (req,res) => {
+        res.render("home/login");
+    },
 };
-const login = (req,res) => {
-    res.render("home/login");
+
+const  users = {
+    id: ["good","day","command"],
+    passwd: ["111","222","333"],
+};
+
+const process = {
+    login: (req, res) => {
+        const id = req.body.id,
+            passwd = req.body.passwd;
+
+
+        if (users.id.includes(id)) {
+            const idx = users.id.indexOf(id);
+            if (users.passwd[idx] === passwd) {
+                return res.json({
+                    success: true,
+                    msg: "hi?",
+                });
+            }
+        }
+
+        return res.json({
+            success: false,
+            msg: "login false.",
+        });
+    },
 };
 
 module.exports = {
-    home,
-    login,
+    output,
+    process,
 };
