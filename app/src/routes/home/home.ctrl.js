@@ -1,38 +1,34 @@
 "use strict";
+const UserStorge = require("../../models/UserStorge");
 
 const output = {
-    home: (req,res) => {
+    home: (req, res) => {
         res.render("home/index");
     },
-    login: (req,res) => {
+    login: (req, res) => {
         res.render("home/login");
     },
-};
-
-const  users = {
-    id: ["good","day","command"],
-    passwd: ["111","222","333"],
 };
 
 const process = {
     login: (req, res) => {
         const id = req.body.id,
             passwd = req.body.passwd;
+        
+        const users = UserStorge.getUsers("id","passwd");
 
-
+        const response = {};
         if (users.id.includes(id)) {
             const idx = users.id.indexOf(id);
             if (users.passwd[idx] === passwd) {
-                return res.json({
-                    success: true,
-                });
+                response.success = true;
+                return res.json(response);
             }
         }
 
-        return res.json({
-            success: false,
-            msg: "login false.",
-        });
+        response.success = false;
+        response.msg = "login false.";
+        return res.json(response);
     },
 };
 
