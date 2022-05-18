@@ -7,10 +7,27 @@
     <title>login</title>
 
     <script src="/js\home\login.js" defer></script>
+    <link rel="stylesheet" href="/css/home/login.css">
 </head>
 <body>
-    <input id="id" type="text" placeholder="id">
-    <input id="passwd" type="text" placeholder="password">
-    <button>LOGIN</button>
+    <div class="login-page">
+        <div class="form">
+          <!-- <form class="register-form">
+            <input type="text" placeholder="name"/>
+            <input type="password" placeholder="password"/>
+            <input type="text" placeholder="email address"/>
+            <button>create</button>
+            <p class="message">Already registered? <a href="#">Sign In</a></p>
+          </form> -->
+          <form class="login-form">
+            <input id = "id" type="text" placeholder="아이디"/>
+            <input id = "passwd" type="password" placeholder="패스워드"/>
+            <button>login</button>
+            <p class="message">Not registered? <a href="/register">Create an account</a></p>
+          </form>
+        </div>
+      </div>
 </body>
 </html>
+
+<!-- Copyright (c) 2022 by Aigars Silkalns (https://codepen.io/colorlib/pen/rxddKy) -->
