@@ -1,5 +1,6 @@
 "use strict";
 
+const { response } = require("express");
 const UserStorge = require("./UserStorge");
 
 class User {
@@ -7,10 +8,9 @@ class User {
         this.body = body;
     }
 
-    login() {
+    async login() {
         const client = this.body;
-        const {id, passwd} = UserStorge.getUserInfo(client.id);
-
+        const { id, passwd } = await UserStorge.getUserInfo(client.id);
         if (id) {
             if (id === client.id && passwd === client.passwd){
                 return {success: true};
